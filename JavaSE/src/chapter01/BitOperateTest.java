@@ -61,7 +61,16 @@ public class BitOperateTest {
 		System.out.println(Integer.toBinaryString(encoding));
 		System.out.println(Integer.toBinaryString(encoding^salt));
 		
+		// ~ : 비트 반전
+		int p = 0b1100;									// 양수 12
+		System.out.println(~p);
+		System.out.println(Integer.toBinaryString(~p)); // 1의 보수
 		
+		int p2 = -12;
+		System.out.println(Integer.toBinaryString(p2));	// 2의 보수 : 대부분의 컴퓨터는 1의보수+1 인 2의 보수를 사용한다.
+		System.out.println(Integer.toBinaryString(~p2));
+		
+
 		//			     abcdefgh
 		int checkbit = 0b00000000;
 	}

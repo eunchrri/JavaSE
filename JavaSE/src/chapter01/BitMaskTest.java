@@ -1,5 +1,7 @@
 package chapter01;
 
+import java.util.Iterator;
+
 public class BitMaskTest {
 
 	public static void main(String[] args) {
@@ -58,6 +60,7 @@ public class BitMaskTest {
 		 * 			
 		 * */
 		
+		
 		/*
 		 * 1. 공집합과 꽉 찬 집합 구하기
 		 * 	A = 0;					// 32개의 원소가 모두 0이므로 공집합
@@ -65,11 +68,12 @@ public class BitMaskTest {
 		 * 	A = (1<<n)-1;			// 꽉 찬 집합
 		 *  0000000001 << 10 ==> 10000000000
 		 *  10000000000 -1 = 11111111111
-		 * */
+		 */
 		
 		int n = 10;
 		int A = (1<<n) -1;
 		System.out.println(Integer.toBinaryString(A));
+		
 		
 		/*
 		 * 2. 특정 위치에 1이 있는지 check로 & 사용
@@ -77,8 +81,7 @@ public class BitMaskTest {
 		 * &	and : 연산하려는 두 비트가 모두 1일 때 1이고 나머지는 0
 					: 특정 위치에 1이 있는지 체크 용도로 사용, data & 0 => 0으로 초기화 하는 효과
 		 * 
-		 * */
-		
+		 */
 		
 		int a1 = 0b1000;
 		int b1 = 0b0010;
@@ -87,19 +90,68 @@ public class BitMaskTest {
 		System.out.println(Integer.toBinaryString(a1&c1));
 		System.out.println(Integer.toBinaryString(b1&c1));
 		
+		
 		/*
 		 * 3. 원소 추가: k번째 위치에 원소를 추가(1로 마스킹)하기
 		 * A |= (1<<K)
 		 * 
 		 * K번째는 뒤에서 부터 세기(0번째 부터~)
-		 * */
+		 */
 		
 		A = 0;
-		int k = 5;
-		A |= (1<<k);
+		int k = 5;			// 5 4 3 2 1 0 < 뒤에서부터 0번째로 세기
+		A |= (1<<k);		// 1 0 0 0 0 0
 		System.out.println(Integer.toBinaryString(A));
 		
 
+		/*
+		 * 4. 원소 삭제
+		 * 	k 번째의 위채에 있는 원소를 삭제(0)
+		 * 	A &= ~(1<<k)
+		 *
+		 */
+		
+		A &= ~(1<<k);
+		System.out.println(Integer.toBinaryString(A));
+		
+		
+		/*
+		 * 5. 마지막 1의 위치 찾기
+		 * A & -A : A의 인지수에서 (앞에서부터) 1의 마지막 위치를 찾기
+		 * 
+		 */
+		
+		A = 0b1100111000;		// 비트 반전 시: 0011000111
+								// 					  +1 : 0011001000 (2의 보수) => 앞은 다 비트 반전인데 마지막 1부터는 그대로 내려옴
+								// 패닉 트리에서 마지막 1의 위치를 찾을 때 필요함.
+		
+		System.out.println(Integer.toBinaryString(A));
+		System.out.println(Integer.toBinaryString(A&-A));
+		
+		int m = 0b11010;
+		System.out.println(Integer.toBinaryString(m));
+		System.out.println(Integer.toBinaryString(m&-m));
+		
+		
+		/*
+		 * 6. 최소 원소 지우기 = > 모든 부분 집합 순회에 응용
+		 * A & (A-1)
+		 * 
+		 */
+		
+		System.out.println("A:"+Integer.toBinaryString(A));			// A:1100111000
+		System.out.println("A:"+Integer.toBinaryString(A&(A-1)));	// A:1100110000
+
+		String[] str = {"a","b","c","d"};							// & 이용해서 부분집합 순회하기 출력해보자 나중에..
+		
+		/*
+		 * 7. 모든 부분집합 순회하기
+		 */
+		System.out.println("부분집합출력:");
+		int s = 0b1101;
+		for (int subset = s; subset != 0; subset=(subset-1)&s) {
+			System.out.println(Integer.toBinaryString(subset));
+		}
 	}
 
 }

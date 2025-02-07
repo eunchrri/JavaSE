@@ -7,7 +7,7 @@ package chapter01;
  * 					1	  2		  4		8byte
  * 		정수형	: byte, short, int(기본), long
  *  	문자		: 		char
- *  	실수형	: 			    float, double(기본)
+ *  	실수형	: 			    			float(4), double(8,기본) //float는 지수부가 있기 때문에 long보다 크다.
  *  	논리		: boolean
  *  
  * Reference Type (참조타입, 사용자 정의 데이터 타입, 객체)
