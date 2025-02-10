@@ -10,14 +10,15 @@ import java.util.Scanner;
  */
 public class FillCell04 {
 	public static void main(String[] args) {
+		// 입력
 		Scanner sc = new Scanner(System.in);
 		int N = sc.nextInt();
-
 		int[][] map = new int[N][N];
 		int r = sc.nextInt();
 		int c = sc.nextInt();
 		int count = sc.nextInt();
-
+		
+		// 출력
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
 				System.out.print(map[i][j]+" ");

@@ -19,9 +19,21 @@ public class FillCell03_delta {
 		int c = sc.nextInt();
 		////////////////
 		/// 처리 코드 작성
+		//			 상 하  좌 우  좌상 우상 좌하 우하
+		int[] dr = {-1, 1, 0, 0, -1, -1, 1, 1};		// 문제에서 특정 방향으로 가야하는 경우에는 그렇게 지정해서 해주기
+		int[] dc = {0, 0, -1, 1, -1, 1, -1, 1};
 		
-		int[] dr = {};
-		int[] dc = {};
+		int d = 8;
+		int nr, nc; // 다음 좌표
+		for (int i = 0; i < d; i++) {
+			nr = r + dr[i];
+			nc = c + dc[i];
+			// 사방 경계 검사
+			if(nr>-1 && nr<N && nc>-1 && nc<N) {
+				map[nr][nc] = 1;
+			}
+		}
+		// 속도는 더 느리지만 간결하고 오타가 적은 방법
 		
 		for (int i = 0; i < N; i++) {
 			for (int j = 0; j < N; j++) {
