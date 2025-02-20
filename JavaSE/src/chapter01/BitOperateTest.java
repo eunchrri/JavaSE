@@ -35,7 +35,9 @@ public class BitOperateTest {
 		
 		
 		// |	or 	: 두 비트가 모두 0일 때만 0, 나머지는 1
-		// 			: 특정 위치에 1로 채우는 효과 
+		// 			: 특정 위치에 1로 채우는 효과
+		// 00000
+		// k 번째에 1 추가 : 1<<k
 		System.out.println(Integer.toBinaryString(a1|b1));
 		System.out.println(Integer.toBinaryString(a1|c1));
 		System.out.println(Integer.toBinaryString(b1|c1));
